@@ -2,7 +2,6 @@ package com.example.blog.domain.dtos;
 
 import com.example.blog.domain.PostStatus;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,25 +18,25 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class UpdatePostRequestDto {
-    @NotNull(message="Post ID is required")
+    @NotNull(message = "Post ID is required")
     private UUID id;
 
-    @NotBlank(message="Title is required")
-    @Size(min=3,max=200,message="Title must be between {min} and {max} characters")
+    @NotBlank(message = "Title is required")
+    @Size(min = 3, max = 200, message = "Title must be between {min} and {max} characters")
     private String title;
 
-    @NotBlank(message="Content is required")
-    @Size(min=10,max=50000,message="Content must be between {min} and {max} characters")
+    @NotBlank(message = "Content is required")
+    @Size(min = 10, max = 50000, message = "Content must be between {min} and {max} characters")
     private String content;
 
-    @NotNull(message="Category ID is required")
+    @NotNull(message = "Category ID is required")
     private UUID categoryId;
 
     @Builder.Default
-    @Size(max=10,message="Maximum {max} tags allowed")
+    @Size(max = 10, message = "Maximum {max} tags allowed")
     Set<UUID> tagIds = new HashSet<>();
 
-    @NotNull(message="Status is required")
+    @NotNull(message = "Status is required")
     private PostStatus status;
 
 

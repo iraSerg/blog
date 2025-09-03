@@ -10,9 +10,14 @@ import java.util.UUID;
 
 public interface PostService {
     Post getPost(UUID id);
-    List<Post> getAllPosts(UUID categoryId,UUID tagId);
+
+    List<Post> getAllPosts(UUID categoryId, UUID tagId);
+
     List<Post> getGraftPosts(User user);
+
     Post createPost(User user, CreatePostRequest postRequest);
-    Post updatePost(UUID id,UpdatePostRequest postRequest);
+
+    Post updatePost(UUID id, UpdatePostRequest postRequest);
+
     void deletePost(UUID id);
 }

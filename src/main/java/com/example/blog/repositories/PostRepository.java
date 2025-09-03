@@ -10,11 +10,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
+
 @Repository
 public interface PostRepository extends JpaRepository<Post, UUID> {
     List<Post> findAllByStatusAndCategoryAndTagsContaining(PostStatus postStatus, Category category, Tag tag);
+
     List<Post> findAllByStatusAndTagsContaining(PostStatus postStatus, Tag tag);
+
     List<Post> findAllByStatusAndCategory(PostStatus postStatus, Category category);
+
     List<Post> findAllByStatus(PostStatus postStatus);
+
     List<Post> findAllByAuthorAndStatus(User author, PostStatus postStatus);
 }
