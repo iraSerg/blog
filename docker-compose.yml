@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    container_name: blog-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - blog
+
+  db:
+    image: postgis/postgis:15-3.5-alpine
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_USER: blog
+      POSTGRES_PASSWORD: blog
+      POSTGRES_DB: blog
+    ports:
+      - '5432:5432'
+    volumes:
+      - blog-db:/var/lib/postgresql/data
+    networks:
+      - blog
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "blog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  blog-db:
+
+networks:
+  blog:
+    driver: bridge
